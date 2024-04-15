@@ -2,15 +2,12 @@ FROM python:3.9
 
 WORKDIR /app
 
-# Install Python dependencies
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-# Copy the rest of the application
-COPY . .
+COPY src/ ./src/
+COPY model/ ./model/
 
-# Expose the necessary ports
-EXPOSE 5001 8501
+EXPOSE $PORT
 
-# Run Flask and Streamlit
-CMD ["sh", "-c", "python src/main.py & streamlit run --server.port 8501 streamlit_app.py"]
+CMD ["sh", "-c", "python src/main.py  --server.port $PORT"]

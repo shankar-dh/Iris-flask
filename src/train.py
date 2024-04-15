@@ -25,7 +25,6 @@ def run_training():
     model.fit(X_train, y_train)
     model.feature_names = X.columns
 
-
     # Persist the trained model
     if not os.path.exists("model"):
         os.makedirs("model")

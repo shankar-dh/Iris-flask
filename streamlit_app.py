@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import os
 
 st.title('IRIS Prediction')
 
@@ -16,7 +17,7 @@ if st.button('Predict'):
         'petal_width': petal_width
     }
     try:
-        response = requests.post('http://localhost:5001/predict', data=data)
+        response  = requests.post('https://iris-app-pbvf6ehg2a-ue.a.run.app/predict', json=data)
         if response.status_code == 200:
             prediction = response.json()['prediction']
             st.success(f'Predicted species: {prediction}')
